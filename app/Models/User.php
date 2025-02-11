@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Notifications\LowBalanceNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -31,13 +32,25 @@ class User extends Authenticatable
         ];
     }
 
-    public static function booted()
+    /**
+     * Refactoring -> Observer
+     * @return void
+     */
+    public static function booted(): void
     {
         static::created(function(User $user){
             $user->wallet()->create([
                 'balance' => 0,
             ]);
         });
+    }
+
+    public function notifyBalanceIsLow(): void
+    {
+        // 1000 = 10.00
+        if($this->wallet->balance < 1000){
+            $this->notify(new LowBalanceNotification);
+        }
     }
 
     /**
