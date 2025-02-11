@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Number; @endphp
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -11,7 +12,7 @@
                 <div class="text-base text-gray-400">@lang('Balance')</div>
                 <div class="flex items-center pt-1">
                     <div class="text-2xl font-bold text-gray-900">
-                        {{ \Illuminate\Support\Number::currencyCents($balance) }}
+                        {{ Number::currencyCents($balance) }}
                     </div>
                 </div>
             </div>
@@ -26,24 +27,24 @@
                             @lang(':amount were successfully sent to :name.', ['amount' => Number::currencyCents(session('money-sent-amount', 0)), 'name' => session('money-sent-recipient-name')])
                         </div>
                     @elseif (session('money-sent-status') === 'insufficient-balance')
-                            <div class="p-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                                <span class="font-medium">@lang('Insufficient balance!')</span>
-                                @lang('You can\'t send :amount to :name.', ['amount' => Number::currencyCents(session('money-sent-amount', 0)), 'name' => session('money-sent-recipient-name')])
-                            </div>
+                        <div class="p-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                            <span class="font-medium">@lang('Insufficient balance!')</span>
+                            @lang('You can\'t send :amount to :name.', ['amount' => Number::currencyCents(session('money-sent-amount', 0)), 'name' => session('money-sent-recipient-name')])
+                        </div>
                     @endif
 
                     <div>
-                        <x-input-label for="recipient_email" :value="__('Recipient email')" />
+                        <x-input-label for="recipient_email" :value="__('Recipient email')"/>
                         <x-text-input id="recipient_email"
                                       class="block mt-1 w-full"
                                       type="email"
                                       name="recipient_email"
                                       :value="old('recipient_email')"
-                                      required />
-                        <x-input-error :messages="$errors->get('recipient_email')" class="mt-2" />
+                                      required/>
+                        <x-input-error :messages="$errors->get('recipient_email')" class="mt-2"/>
                     </div>
                     <div>
-                        <x-input-label for="amount" :value="__('Amount (€)')" />
+                        <x-input-label for="amount" :value="__('Amount (€)')"/>
                         <x-text-input id="amount"
                                       class="block mt-1 w-full"
                                       type="number"
@@ -51,18 +52,18 @@
                                       step="0.01"
                                       :value="old('amount')"
                                       name="amount"
-                                      required />
-                        <x-input-error :messages="$errors->get('amount')" class="mt-2" />
+                                      required/>
+                        <x-input-error :messages="$errors->get('amount')" class="mt-2"/>
                     </div>
                     <div>
-                        <x-input-label for="reason" :value="__('Reason')" />
+                        <x-input-label for="reason" :value="__('Reason')"/>
                         <x-text-input id="reason"
                                       class="block mt-1 w-full"
                                       type="text"
                                       :value="old('reason')"
                                       name="reason"
-                                      required />
-                        <x-input-error :messages="$errors->get('reason')" class="mt-2" />
+                                      required/>
+                        <x-input-error :messages="$errors->get('reason')" class="mt-2"/>
                     </div>
 
                     <div class="flex justify-end mt-4">
