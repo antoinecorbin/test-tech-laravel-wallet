@@ -15,6 +15,8 @@ class  SendMoneyController
         $recipient = $request->getRecipient();
 
         try {
+            $request->user()->notifyBalanceIsLow();
+
             $performWalletTransfer->execute(
                 sender: $request->user(),
                 recipient: $recipient,

@@ -48,7 +48,6 @@ class User extends Authenticatable
 
     public function notifyBalanceIsLow(): void
     {
-        // 1000 = 10.00
         if($this->wallet->balance < 1000){
             $this->notify(new LowBalanceNotification);
         }
