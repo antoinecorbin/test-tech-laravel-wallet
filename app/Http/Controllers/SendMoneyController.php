@@ -8,7 +8,7 @@ use App\Actions\PerformWalletTransfer;
 use App\Exceptions\InsufficientBalance;
 use App\Http\Requests\SendMoneyRequest;
 
-class SendMoneyController
+class  SendMoneyController
 {
     public function __invoke(SendMoneyRequest $request, PerformWalletTransfer $performWalletTransfer)
     {
