@@ -12,19 +12,17 @@
             @if (session('recurring-transfer-status') === 'created')
                 <div class="p-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
                     <span class="font-medium">@lang('Transfer récurrent créé')</span>
-                    <p>Vous venez de créer un transfer récurrent, le premier virement a bien été effecuté.</p>
+                    <p>Vous venez de créer un transfert récurrent. Le premier virement a bien été effectué.</p>
                 </div>
             @elseif (session('recurring-transfer-status') === 'insufficient-balance')
                 <div class="p-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
                     <span class="font-medium">@lang('Transfer récurrent créé')</span>
-                    <p>Vous venez de créer un transfer récurrent, le premier virement n'as pas été effecuté car vous
-                        avez un solde inférieur au montant renseigner dans le transfer récurrent. Veuillez alimentez
-                        votre compte.</p>
+                    <p>Vous venez de créer un transfert récurrent. Le premier virement n’a pas été effectué, car votre solde est inférieur au montant indiqué pour ce transfert. Veuillez alimenter votre compte.</p>
                 </div>
                 @elseif (session('recurring-transfer-status') === 'deleted')
                 <div class="p-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
                     <span class="font-medium">@lang('Transfer récurrent supprimé')</span>
-                    <p>Vous venez de supprimer un transfer récurrent, tous les prochains virement sont supprimés.</p>
+                    <p>Vous venez de supprimer un transfert récurrent. Par conséquent, tous les prochains virements ont été supprimés.</p>
                 </div>
             @elseif (session('recurring-transfer-status') === 'delete-unauthorized')
                 <div class="p-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
